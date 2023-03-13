@@ -1,0 +1,148 @@
+﻿
+@model StudentMVCApp.Models.Student.Student
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script>
+
+    function fnEdit(id) {
+        GetStudent(id);
+    };
+
+    
+
+    function GetStudent(id) {
+        var formData = {
+            Id: id
+        };
+        $.ajax({
+            type: "GET",
+            url: "Student/GetStudent",
+            data: formData,
+            dataType: "json",
+            encode: true,
+        }).done(function (data) {
+            debugger;
+            $('#Id').val(data.id);
+            $('#FirstName').val(data.firstName);
+            $('#LastName').val(data.lastName);
+            $('#Address').val(data.address);
+        });
+
+    };
+
+    function fnDelete(id) {
+        var formData = {
+            Id: id,
+        };
+        $.ajax({
+            type: "GET",
+            url: "Student/DeleteStudent",
+            data: formData,
+            dataType: "json",
+            encode: true,
+        }).done(function (data) {
+            $('#successMsg').text('Student deleted successfully');
+            $('#studentTble').html('');
+            GetAllStudents();
+        });
+
+    };
+
+    function GetAllStudents() {
+        var formData = {};
+        var tbHtml = '<tr><th>StudentId</th><th>First Name</th><th>Last Name</th> <th>Address</th></tr>';
+        $.ajax({
+            type: "GET",
+            url: "Student/GetAllStudents",
+            data: formData,
+            dataType: "json",
+            encode: true,
+        }).done(function (data) {
+
+            $.each(data, function (key, value) {
+                debugger;
+                var tbRow = '<tr><td>' + value.id + '</td><td>' + value.firstName + '</td><td>' + value.lastName +
+                    '</td><td>' + value.address + '</td><td><a href="#" onclick="return fnEdit(' + value.id + ');">Edit</a></td><td><a href="#" onclick="return fnDelete(' + value.id + ');">Delete</a></td></tr>';
+                tbHtml = tbHtml + tbRow;
+                $('#studentTble').html(tbHtml);
+            });
+
+        });
+
+    };
+
+    $(document).ready(function(){    
+
+        $('#stdSave').click(function(){
+            var formData = {
+                FirstName: $("#FirstName").val(),
+                LastName: $("#LastName").val(),
+                Address: $("#Address").val()
+            };
+
+            $.ajax({
+                type: "POST",
+                url: "Student/Save",
+                data: formData,
+                dataType: "json",
+                encode: true,
+            }).done(function (data) {
+                $('#studentTble').html('');
+                GetAllStudents();
+                $('#successMsg').text('Student form submitted successfully');
+            });
+        });  
+        
+        $('#btnUpdate').click(function () {
+            var formData = {
+                Id: $('#Id').val(),
+                FirstName: $("#FirstName").val(),
+                LastName: $("#LastName").val(),
+                Address: $("#Address").val()
+            };
+
+            $.ajax({
+                type: "POST",
+                url: "Student/UpdateStudent",
+                data: formData,
+                dataType: "json",
+                encode: true,
+            }).done(function (data) {
+                $('#studentTble').html('');
+                GetAllStudents();
+                $('#successMsg').text('Student form updated successfully');
+            });
+        });
+
+        GetAllStudents();
+    });
+
+</script>
+
+<h1> Student Details </h1>
+@using(Html.BeginForm("Save","Student",FormMethod.Post))
+{
+    @Html.LabelFor(m=>m.Id) @Html.TextBoxFor(c=>c.Id)
+    <br />
+    @Html.LabelFor(m=>m.FirstName) @Html.TextBoxFor(m=>m.FirstName)
+    @Html.ValidationMessageFor(m=>m.FirstName)
+    <br />
+    @Html.LabelFor(m=>m.LastName) @Html.TextBoxFor(m=>m.LastName)
+    @Html.ValidationMessageFor(m=>m.LastName)
+    <br />
+    <label>Address</label> @Html.TextAreaFor(m=>m.Address)
+    <input type="button" id="stdSave" value="Save">
+    <input type="button" id="btnUpdate" value="Update">
+    <p id="successMsg"> </p>
+}
+
+<div> 
+    <table id="studentTble" style="border: 1px solid black;">
+        
+    </table>
+
+</div>
+
+    
+
+
+    

@@ -1,0 +1,8 @@
+C:\Users\Swathi\source\repos\StudentMVCApp\StudentMVCApp\obj\Debug\net5.0\StudentMVCApp.csproj.AssemblyReference.cache
+C:\Users\Swathi\source\repos\StudentMVCApp\StudentMVCApp\obj\Debug\net5.0\StudentMVCApp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Swathi\source\repos\StudentMVCApp\StudentMVCApp\obj\Debug\net5.0\StudentMVCApp.AssemblyInfoInputs.cache
+C:\Users\Swathi\source\repos\StudentMVCApp\StudentMVCApp\obj\Debug\net5.0\StudentMVCApp.AssemblyInfo.cs
+C:\Users\Swathi\source\repos\StudentMVCApp\StudentMVCApp\obj\Debug\net5.0\StudentMVCApp.csproj.CoreCompileInputs.cache
+C:\Users\Swathi\source\repos\StudentMVCApp\StudentMVCApp\obj\Debug\net5.0\StudentMVCApp.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Swathi\source\repos\StudentMVCApp\StudentMVCApp\obj\Debug\net5.0\StudentMVCApp.RazorAssemblyInfo.cache
+C:\Users\Swathi\source\repos\StudentMVCApp\StudentMVCApp\obj\Debug\net5.0\StudentMVCApp.RazorAssemblyInfo.cs
